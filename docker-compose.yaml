@@ -1,0 +1,28 @@
+services:
+  backend:
+    container_name: backend
+    hostname: backend
+    image: planterson/vue-node-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/server.js:/backend/server.js:ro
+    # ports:
+    #   - 3000:3000
+    entrypoint: ["npm", "run", "dev"]
+
+  frontend:
+    container_name: frontend
+    hostname: frontend
+    depends_on:
+      - backend
+    image: planterson/vue-frontend
+    build:
+      context: ./vue-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    stdin_open: true
+    tty: true
+    entrypoint: [ "nginx", "-g", "daemon off;" ]
