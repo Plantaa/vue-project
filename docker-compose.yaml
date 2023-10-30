@@ -9,7 +9,7 @@ services:
     volumes:
       - ./backend/server.js:/backend/server.js:ro
     # ports:
-    #   - 3000:3000
+    #   - 80:80
     entrypoint: ["npm", "run", "dev"]
 
   frontend:
