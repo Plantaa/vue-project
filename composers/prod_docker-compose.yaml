@@ -1,0 +1,29 @@
+name: vue-prod
+services:
+  backend-prod:
+    container_name: backend-prod
+    hostname: backend
+    image: planterson/vue-backend-prod
+    build:
+      context: ../backend/
+      dockerfile: dockerfiles/Dockerfile.prod
+    env_file:
+      - ../backend/env/.env.prod
+    # ports:
+    #   - 80:80
+    entrypoint: [ "npm", "start" ]
+
+  frontend-prod:
+    container_name: frontend-prod
+    hostname: frontend
+    depends_on:
+      - backend-prod
+    image: planterson/vue-frontend-prod
+    build:
+      context: ../vue-frontend/
+      dockerfile: dockerfiles/Dockerfile.prod
+    ports:
+      - 80:80
+    stdin_open: true
+    tty: true
+    entrypoint: [ "nginx", "-g", "daemon off;" ]
