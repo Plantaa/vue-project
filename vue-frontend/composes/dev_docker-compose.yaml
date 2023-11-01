@@ -8,6 +8,10 @@ services:
       dockerfile: dockerfiles/Dockerfile.dev
     ports:
       - "5173:5173"
+    env_file:
+      - ../env/.env.local
+    volumes:
+      - ../src/:/frontend/src:ro
     stdin_open: true
     tty: true
     entrypoint: ["npm", "run", "dev"]

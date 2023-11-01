@@ -1,0 +1,32 @@
+name: vue-dev
+
+services:
+  backend-dev:
+    image: planterson/vue-backend-dev
+    container_name: vue-backend-dev
+    build:
+      context: backend/
+      dockerfile: dockerfiles/Dockerfile.dev
+    ports:
+      - 5000:5000
+    env_file:
+      - backend/env/dev.env
+    volumes:
+      - ./backend/server.js:/backend/server.js:ro
+    entrypoint: ["npm", "run", "dev"]
+
+  frontend-dev:
+    image: planterson/vue-frontend-dev
+    container_name: vue-frontend-dev
+    build:
+      context: vue-frontend/
+      dockerfile: dockerfiles/Dockerfile.dev
+    ports:
+      - "5173:5173"
+    env_file:
+      - vue-frontend/env/.env.local
+    volumes:
+      - ./vue-frontend/src/:/frontend/src:ro
+    stdin_open: true
+    tty: true
+    entrypoint: ["npm", "run", "dev"]
