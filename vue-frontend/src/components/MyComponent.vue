@@ -1,26 +1,25 @@
 <script setup>
-import { ref } from "vue"
+import { ref, watch } from "vue"
+
+const requestId = ref(1);
+const requestData = ref(null);
 
 const dataEndpoint = "/api/data";
 
-const data = ref("Click here to fetch data!");
-
-async function getData() {
-    try {
-        let response = await fetch(new Request(dataEndpoint));
-        if (response.status !== 200) {
-            console.error("API endpoint responded with a non 200 status.");
-        }
-        else {
-            data.value = await(response.json());
-            console.log(data.value);
-        }
-    } catch (error) {
-        console.error(error);
-    };
+async function fetchData() {
+    requestData.value = null;
+    const res = await fetch(dataEndpoint);
+    requestData.value = await res.json();
 }
+
+fetchData()
+
+watch(requestId, fetchData)
 </script>
 
 <template>
-    <button @click="getData">{{ data }}</button>
-</template>
+    <p>Request ID: {{ requestId }}</p>
+    <button @click="requestId++">Fetch next request</button>
+    <p v-if="!requestData">Loading...</p>
+    <pre v-else>{{ requestData }}</pre>
+  </template>

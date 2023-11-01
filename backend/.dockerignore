@@ -1,4 +1,4 @@
 .dockerignore
-docker-compose.yaml
-Dockerfile
-package-lock.json
+composes
+dockerfiles
+env

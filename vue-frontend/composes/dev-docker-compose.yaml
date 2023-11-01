@@ -1,10 +1,11 @@
+name: vue-dev
 services:
-  frontend:
+  frontend-dev:
     image: planterson/vue-frontend
     container_name: vue-frontend
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: dockerfiles/Dockerfile.dev
     ports:
       - "5173:5173"
     stdin_open: true

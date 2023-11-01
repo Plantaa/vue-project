@@ -1,13 +1,22 @@
+const dotenv = require("dotenv").config;
+const port = process.env.PORT || 5000;
+
+const fs = require("fs");
+const path = require("path");
+
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
+
+const mongoose = require("mongoose");
+
 const app = express();
-const port = 80;
 
 app.use(cors());
 
 app.get("/health", (req, res) => {
     console.log("Health check");
-    res.send("Server is up and running");
+    res.send("Server is up and running!");
 })
 
 app.get("/data", (req, res) => {
@@ -19,5 +28,5 @@ app.get("/data", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}!`);
+    console.log(`Example app listening on port ${port}`);
 })

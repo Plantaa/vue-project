@@ -1,1 +1,4 @@
-**/.*
+.dockerignore
+composes
+dockerfiles
+env

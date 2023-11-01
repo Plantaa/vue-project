@@ -1,6 +1,7 @@
 vue-frontend/dist
 
-
 **/.vscode
 
-**/.env
+**/*env
+
+**/node_modules
