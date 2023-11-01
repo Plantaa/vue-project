@@ -1,7 +1,7 @@
 name: vue-prod
 services:
   backend-prod:
-    container_name: backend
+    container_name: backend-prod
     hostname: backend
     image: planterson/vue-backend-prod
     build:
@@ -16,7 +16,7 @@ services:
     entrypoint: [ "npm", "start" ]
 
   frontend-prod:
-    container_name: frontend
+    container_name: frontend-prod
     hostname: frontend
     depends_on:
       - backend-prod

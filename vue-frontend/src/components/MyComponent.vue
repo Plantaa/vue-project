@@ -12,9 +12,7 @@ async function fetchData() {
     requestData.value = await res.json();
 }
 
-fetchData()
-
-watch(requestId, fetchData)
+watch(fetchData, {imediate: true});
 </script>
 
 <template>

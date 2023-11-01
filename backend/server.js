@@ -1,6 +1,8 @@
 const dotenv = require("dotenv").config;
 const port = process.env.PORT || 5000;
 
+const { randomUUID } = require('crypto');
+
 const fs = require("fs");
 const path = require("path");
 
@@ -21,6 +23,7 @@ app.get("/health", (req, res) => {
 
 app.get("/data", (req, res) => {
     const data = {
+        uuid: randomUUID(),
         user: "John Doe",
     }
     console.log(data);
