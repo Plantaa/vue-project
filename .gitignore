@@ -1,8 +1,8 @@
-vue-frontend/dist
+frontend/dist
 
 **/.vscode
 
-**/*env
+**/.env*
 
 **/node_modules
 
