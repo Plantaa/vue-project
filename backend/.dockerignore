@@ -1,5 +1,5 @@
 .dockerignore
-composes
+composers
 dockerfiles
 env
 node_modules
