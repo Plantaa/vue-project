@@ -38,3 +38,6 @@ services:
     stdin_open: true
     tty: true
     entrypoint: [ "nginx", "-g", "daemon off;" ]
+
+volumes:
+  data-prod:
