@@ -1,5 +1,14 @@
 name: vue-prod
+
 services:
+  mongodb-prod:
+    image: "mongo"
+    volumes:
+      - data-prod:/data/db:rw
+    container_name: mongodb-prod
+    env_file:
+      - ../backend/env/.env.mongodb-prod
+
   backend-prod:
     container_name: backend-prod
     hostname: backend
@@ -11,6 +20,8 @@ services:
       - ../backend/env/.env.prod
     # ports:
     #   - 80:80
+    depends_on:
+      - mongodb-prod
     entrypoint: [ "npm", "start" ]
 
   frontend-prod:
@@ -20,7 +31,7 @@ services:
       - backend-prod
     image: planterson/vue-frontend-prod
     build:
-      context: ../vue-frontend/
+      context: ../frontend/
       dockerfile: dockerfiles/Dockerfile.prod
     ports:
       - 80:80

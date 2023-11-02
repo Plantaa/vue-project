@@ -1,5 +1,14 @@
 name: vue-dev
+
 services:
+  mongodb-dev:
+    image: "mongo"
+    volumes:
+      - data:/data/db:rw
+    container_name: mongodb-dev
+    env_file:
+      - ../env/.env.mongodb-dev
+
   backend-dev:
     image: planterson/vue-backend-dev
     container_name: vue-backend-dev
@@ -9,8 +18,12 @@ services:
     ports:
       - 5000:5000
     env_file:
-      - ../env/dev.env
+      - ../env/.env.dev
     volumes:
-      - ../server.js:/backend/server.js:ro
+      - ../src/:/backend/src/:ro
+    depends_on:
+      - mongodb-dev
     entrypoint: ["npm", "run", "dev"]
-    
+
+volumes:
+  data:
