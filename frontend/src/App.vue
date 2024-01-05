@@ -5,6 +5,7 @@ import Details from './components/Details.vue';
 import MyComponent from './components/MyComponent.vue';
 import ChildComp from './components/ChildComp.vue';
 import Header from './components/Header.vue';
+import FileUpload from "./components/FileUpload.vue";
 
 const greeting = ref("Hello from parent");
 </script>
@@ -15,6 +16,7 @@ const greeting = ref("Hello from parent");
     <MyComponent />
     <Details />
     <ChildComp :msg="greeting" />
+    <FileUpload />
   </main>
 </template>
 
