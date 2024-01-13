@@ -1,23 +1,29 @@
 <script setup>
-    import { ref } from "vue";
+  import { ref } from "vue";
+  import axios from "axios";
+  
+  const fileUploadURL = "http://localhost:5000/files";
 
-    const fileInput = ref(null);
-    const files = ref();
+  const fileSelected = ref(null);
 
-    handleFileChange = () => files.value = fileInput.value
+  function onFileSelected(event) {
+    fileSelected.value = event.target.files[0];
+  }
+
+  function onUpload() {
+    const formData = new FormData();
+    formData.append("file.txt", fileSelected.value);
+    axios.post(fileUploadURL, formData).then(res => console.log(res));
+  }
+
 </script>
 
 <template>
-    <form>
-    <div>
-      <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
-      <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
-    </div>
-    <div class="preview">
-      <p>No files currently selected for upload</p>
-    </div>
-    <div>
-      <button>Submit</button>
-    </div>
+  <form @submit.prevent="onUpload">
+    <input
+    enctype="multipart/form-data"
+    type="file"
+    @change="onFileSelected">
+    <button>Submit</button>
   </form>
 </template>

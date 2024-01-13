@@ -2,20 +2,20 @@ const dotenv = require("dotenv").config;
 const port = process.env.PORT || 5000;
 
 const { randomUUID } = require('crypto');
-
 const express = require("express");
+const multer = require("multer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const User = require('./mongodb/models/user');
+const File = require("./mongodb/models/file");
 const mongodbConnect = require("./mongodb/mongo-client");
-
 const isEmpty = require("./utils/objUtils");
 
 const app = express();
+var upload = multer();
 
 app.use(cors());
-
 app.use(bodyParser.json());
 
 app.get("/health", (req, res) => {
@@ -30,6 +30,29 @@ app.get("/data", (req, res) => {
     }
     console.log(data);
     res.send(data);
+})
+
+app.post("/files", upload.single("file.txt"), async (req, res) => {
+    console.log("Trying to store file...");
+    const file = req.file;
+    const newFile = new File({
+        fieldName: file.fieldname,
+        originalName: file.originalname,
+        buffer: file.buffer
+    })
+    try {
+        await newFile.save();
+        res.status(201).json({
+            message: "File saved",
+            newFile,
+        });
+        console.log("Stored new file");
+    } catch (error) {
+        console.error("Error storing file");
+        console.error(error.message);
+        res.status(500).json({ message: "Failed to save file" });
+        return;
+    }
 })
 
 app.get("/users", async (req, res) => {

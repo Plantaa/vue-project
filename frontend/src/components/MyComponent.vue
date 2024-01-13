@@ -8,6 +8,7 @@ const dataEndpoint = import.meta.env.VITE_LOCAL_DEV_BACKEND_DATA_ENDPOINT || "/a
 
 async function fetchData() {
     requestData.value = null;
+    console.log(dataEndpoint);
     try {
         const res = await fetch(dataEndpoint);
         console.log(res);
