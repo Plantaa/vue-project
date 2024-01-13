@@ -21,7 +21,7 @@ async function getFiles(req, res) {
 
 async function uploadFile(req, res) {
     console.log("Trying to store file...");
-    const file = req.file;
+    const file = req.body;
     const newFile = new File({
         fieldName: file.fieldname,
         originalName: file.originalname,

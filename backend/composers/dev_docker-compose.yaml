@@ -21,6 +21,8 @@ services:
       - ../env/.env.dev
     volumes:
       - ../src/:/backend/src/:ro
+      - ../key.pem:/backend/key.pem:ro
+      - ../cert.pem:/backend/cert.pem:ro
     depends_on:
       - mongodb-dev
     entrypoint: ["npm", "run", "dev"]

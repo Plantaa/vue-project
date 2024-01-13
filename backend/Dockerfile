@@ -2,7 +2,7 @@ FROM node:alpine as base
 WORKDIR /backend/
 COPY package.json .
 RUN npm install
-COPY src .
+COPY . .
 
 FROM base as development
 EXPOSE 5000

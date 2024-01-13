@@ -20,22 +20,28 @@ services:
       - ../backend/env/.env.prod
     depends_on:
       - mongodb-prod
+    volumes:
+      - ../backend/key.pem:/backend/key.pem:ro
+      - ../backend/cert.pem:/backend/cert.pem:ro
     entrypoint: [ "npm", "start" ]
 
   frontend-prod:
-    container_name: frontend-prod
-    hostname: frontend
-    depends_on:
-      - backend-prod
-    image: planterson/vue-frontend-prod
-    build:
-      context: ../frontend/
-      target: production
-    ports:
-      - 80:80
-    stdin_open: true
-    tty: true
-    entrypoint: [ "nginx", "-g", "daemon off;" ]
+      container_name: frontend-prod
+      hostname: frontend
+      image: planterson/vue-frontend
+      build:
+        context: ../frontend
+        target: production
+      ports:
+        - 80:80
+        - 443:443
+      stdin_open: true
+      tty: true
+      volumes:
+        - ../frontend/dhparam.pem:/etc/nginx/dhparam.pem:ro
+        - ../frontend/nginx.crt:/etc/ssl/certs/nginx.crt:ro
+        - ../frontend/nginx.key:/etc/ssl/private/nginx.key:ro
+      entrypoint: [ "nginx", "-g", "daemon off;" ]
 
 volumes:
   data-prod:

@@ -4,3 +4,6 @@ composers
 env
 node_modules
 package-lock.json
+*.crt
+*.key
+*.pem

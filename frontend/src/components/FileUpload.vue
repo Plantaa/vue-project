@@ -2,7 +2,7 @@
   import { ref } from "vue";
   import axios from "axios";
   
-  const fileUploadURL = "http://localhost:5000/file";
+  const fileUploadURL = import.meta.env.VITE_LOCAL_DEV_BACKEND_FILE_ENDPOINT || "/api/file";
 
   const fileSelected = ref(null);
 
@@ -13,7 +13,14 @@
   function onUpload() {
     const formData = new FormData();
     formData.append("file.txt", fileSelected.value);
-    axios.post(fileUploadURL, formData).then(res => console.log(res));
+    //axios.post(fileUploadURL, formData).then(res => console.log(res));
+    fetch(fileUploadURL, {
+      method: "post",
+      body: formData,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    }).then(res => console.log(res));
   }
 
 </script>

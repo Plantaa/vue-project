@@ -9,6 +9,11 @@ services:
         target: production
       ports:
         - 80:80
+        - 443:443
       stdin_open: true
       tty: true
+      volumes:
+        - ../dhparam.pem:/etc/nginx/dhparam.pem:ro
+        - ../nginx.crt:/etc/ssl/certs/neginx.crt:ro
+        - ../nginx.key:/etc/ssl/private/nginx.key:ro
       entrypoint: [ "nginx", "-g", "daemon off;" ]
