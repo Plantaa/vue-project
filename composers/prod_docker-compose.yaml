@@ -15,11 +15,9 @@ services:
     image: planterson/vue-backend-prod
     build:
       context: ../backend/
-      dockerfile: dockerfiles/Dockerfile.prod
+      target: production
     env_file:
       - ../backend/env/.env.prod
-    # ports:
-    #   - 80:80
     depends_on:
       - mongodb-prod
     entrypoint: [ "npm", "start" ]
@@ -32,7 +30,7 @@ services:
     image: planterson/vue-frontend-prod
     build:
       context: ../frontend/
-      dockerfile: dockerfiles/Dockerfile.prod
+      target: production
     ports:
       - 80:80
     stdin_open: true

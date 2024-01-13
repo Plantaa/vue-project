@@ -14,7 +14,7 @@ services:
     container_name: vue-backend-dev
     build:
       context: ../
-      dockerfile: dockerfiles/Dockerfile.dev
+      target: development
     ports:
       - 5000:5000
     env_file:

@@ -1,6 +1,6 @@
 .dockerignore
+Dockerfile
 composers
-dockerfiles
 env
 node_modules
 package-lock.json

@@ -14,7 +14,7 @@ services:
     hostname: backend
     build:
       context: ../
-      dockerfile: dockerfiles/Dockerfile.prod
+      target: production
     env_file:
       - ../env/.env.prod
     # ports:

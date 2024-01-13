@@ -6,7 +6,7 @@ services:
       image: planterson/vue-frontend
       build:
         context: ../
-        dockerfile: dockerfiles/Dockerfile.prod
+        target: production
       ports:
         - 80:80
       stdin_open: true
