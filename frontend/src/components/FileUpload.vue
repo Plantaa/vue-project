@@ -1,6 +1,5 @@
 <script setup>
   import { ref } from "vue";
-  import axios from "axios";
   
   const fileUploadURL = import.meta.env.VITE_LOCAL_DEV_BACKEND_FILE_ENDPOINT || "/api/file";
 
