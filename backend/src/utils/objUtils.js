@@ -3,4 +3,6 @@ function isEmpty(obj) {
     return true;
 }
 
-module.exports = isEmpty;
+module.exports = {
+    isEmpty,
+}

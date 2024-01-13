@@ -2,7 +2,7 @@
   import { ref } from "vue";
   import axios from "axios";
   
-  const fileUploadURL = "http://localhost:5000/files";
+  const fileUploadURL = "http://localhost:5000/file";
 
   const fileSelected = ref(null);
 
