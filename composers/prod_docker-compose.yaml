@@ -28,7 +28,7 @@ services:
   frontend-prod:
       container_name: frontend-prod
       hostname: frontend
-      image: planterson/vue-frontend
+      image: planterson/vue-frontend-prod
       build:
         context: ../frontend
         target: production

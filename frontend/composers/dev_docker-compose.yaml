@@ -1,7 +1,7 @@
 name: vue-dev
 services:
   frontend-dev:
-    image: planterson/vue-frontend
+    image: planterson/vue-frontend-dev
     container_name: vue-frontend
     build:
       context: ../

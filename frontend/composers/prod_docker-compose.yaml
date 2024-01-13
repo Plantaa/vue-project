@@ -1,9 +1,9 @@
 name: vue-prod
 services:
-  frontend:
-      container_name: frontend
+  frontend-prod:
+      container_name: frontend-dev
       hostname: frontend
-      image: planterson/vue-frontend
+      image: planterson/vue-frontend-dev
       build:
         context: ../
         target: production
