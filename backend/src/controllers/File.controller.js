@@ -1,4 +1,5 @@
 const File = require("../mongodb/models/file");
+const { isEmpty } = require("../utils/objUtils");
 
 async function getFiles(req, res) {
     console.log("Trying to fetch files...");
@@ -8,7 +9,7 @@ async function getFiles(req, res) {
             Files: files.map(file => ({
                 fieldName: file.fieldName,
                 orignalName: file.originalName,
-                buffer: file.buffer,
+                contents: file.contents,
             })),
         });
         console.log("Fetched files");
@@ -21,11 +22,16 @@ async function getFiles(req, res) {
 
 async function uploadFile(req, res) {
     console.log("Trying to store file...");
-    const file = req.body;
+    const file = req.file;
+    console.log(file);
+    if(isEmpty(file)) {
+        res.status(304).json({ message: "File field in the request cannot be empty" });
+        return;
+    }
     const newFile = new File({
         fieldName: file.fieldname,
         originalName: file.originalname,
-        buffer: file.buffer
+        contents: file.buffer,
     })
     try {
         await newFile.save();
@@ -35,8 +41,7 @@ async function uploadFile(req, res) {
         });
         console.log("Stored new file");
     } catch (error) {
-        console.error("Error storing file");
-        console.error(error.message);
+        console.error("Error storing file", error.message);
         res.status(500).json({ message: "Failed to save file" });
         return;
     }

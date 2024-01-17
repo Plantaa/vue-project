@@ -16,8 +16,9 @@ const mongodbConnect = require("./mongodb/mongo-client");
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(bodyParser.json({limit: '3MB'}));
+app.use(bodyParser.json());
 
 mongodbConnect();
 
