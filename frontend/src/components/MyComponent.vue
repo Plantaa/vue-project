@@ -29,4 +29,4 @@ watch(requestId, fetchData);
     <button @click="requestId++">Fetch next request</button>
     <p v-if="!requestData">Loading...</p>
     <pre v-else>{{ requestData }}</pre>
-  </template>
+</template>

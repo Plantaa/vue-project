@@ -7,7 +7,15 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+  </div>
+  <div id="app"></div>
+  <div id="parent-div">
+    <button hx-get="https://localhost:5000/data"
+      hx-trigger="click"
+      hx-target="#parent-div"
+      hx-swap="outerHTML">
+    Click Me!</button>
     <script type="module" src="/src/main.js"></script>
+    <script src="./htmx/htmx.min.js"></script>
   </body>
 </html>

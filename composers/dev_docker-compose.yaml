@@ -40,7 +40,9 @@ services:
     env_file:
       - ../frontend/env/.env.local
     volumes:
-      - ../frontend/src/:/frontend/src:ro
+      - ../frontend/src/:/frontend/src/:ro
+      - ../frontend/index.html:/frontend/index.html:ro
+
     stdin_open: true
     tty: true
     entrypoint: ["npm", "run", "dev"]

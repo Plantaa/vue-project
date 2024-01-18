@@ -31,6 +31,7 @@ body {
     text-align: center;
     background: #05201aca;
     color: white;
+
     & h1 {
         font-size: 40px;
     }

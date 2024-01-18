@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import TodoItem from './TodoItem.vue'
-  
+
 const newTodoText = ref('')
 const todos = ref([
   {
@@ -30,22 +30,13 @@ function addNewTodo() {
 </script>
 
 <template>
-	<form v-on:submit.prevent="addNewTodo">
+  <form v-on:submit.prevent="addNewTodo">
     <label for="new-todo">Add a todo</label>
-    <input
-      v-model="newTodoText"
-      id="new-todo"
-      placeholder="E.g. Feed the cat"
-      required
-    />
+    <input v-model="newTodoText" id="new-todo" placeholder="E.g. Feed the cat" required />
     <button>Add</button>
   </form>
   <ul>
-    <todo-item
-      v-for="(todo, index) in todos"
-      :key="todo.id"
-      :title="todo.title"
-      @remove="todos.splice(index, 1)"
-    ></todo-item>
+    <todo-item v-for="(todo, index) in todos" :key="todo.id" :title="todo.title"
+      @remove="todos.splice(index, 1)"></todo-item>
   </ul>
 </template>

@@ -3,12 +3,13 @@ defineProps(["image"]);
 </script>
 
 <template>
-<img :src="image" :class="selected"/>
+    <img :src="image"/>
 </template>
 <style scoped>
 img {
-    border: 5px solid darkblue;
-    height: 150px;
-    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
 }
 </style>

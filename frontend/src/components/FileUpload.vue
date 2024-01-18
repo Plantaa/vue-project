@@ -4,13 +4,11 @@ import ImagePreview from "./ImagePreview.vue";
 const fileUploadURL = import.meta.env.VITE_LOCAL_DEV_BACKEND_FILE_ENDPOINT || "/api/file";
 
 const fileSelected = ref(null);
-const imageSelected = ref(false);
 const image = ref(null);
 
 function onFileSelected(event) {
   fileSelected.value = event.target.files[0];
-  if(!fileSelected.value) { image.value = null; imageSelected = false; }
-  imageSelected.value = true;
+  if (!fileSelected.value) { image.value = null; return; }
   image.value = URL.createObjectURL(fileSelected.value);
 }
 
@@ -26,13 +24,20 @@ function onUpload() {
 
 <template>
   <form @submit.prevent="onUpload">
-    <input
-    enctype="multipart/form-data"
-    type="file"
-    @change="onFileSelected">
+    <input enctype="multipart/form-data" type="file" @change="onFileSelected">
     <button>Submit</button>
   </form>
-  <ImagePreview
-  :image="image"
-  :style="{ visibility: imageSelected ? 'visible': 'hidden' }"/>
+  <ImagePreview :image="image"/>
 </template>
+
+<style scoped>
+img {
+  display: block;
+  width: 10%;
+  padding: 0px 0px 0px 0px;
+  border: 0;
+  margin: 0;
+  outline: 0;
+  text-align: left;
+}
+</style>

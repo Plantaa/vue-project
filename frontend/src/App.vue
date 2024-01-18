@@ -1,17 +1,17 @@
 <script setup>
 import { ref } from "vue";
 
-import Details     from './components/Details.vue';
+import Details from './components/Details.vue';
 import MyComponent from './components/MyComponent.vue';
-import ChildComp   from './components/ChildComp.vue';
-import Header      from './components/Header.vue';
-import FileUpload  from "./components/FileUpload.vue";
+import ChildComp from './components/ChildComp.vue';
+import Header from './components/Header.vue';
+import FileUpload from "./components/FileUpload.vue";
 
 const greeting = ref("Hello from parent");
 </script>
 
 <template>
-  <Header class="header"/>
+  <Header class="header" />
   <main>
     <MyComponent />
     <Details />
@@ -21,7 +21,7 @@ const greeting = ref("Hello from parent");
 </template>
 
 <style scoped>
-  .header {
-    align-self: center;
-  }
+.header {
+  align-self: center;
+}
 </style>
