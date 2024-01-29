@@ -9,13 +9,13 @@
   <body>
   </div>
   <div id="app"></div>
-  <div id="parent-div">
-    <button hx-get="https://localhost:5000/data"
+  <div id="parent-div"></div>
+    <button hx-get="http://localhost:5000/htmx/data"
       hx-trigger="click"
       hx-target="#parent-div"
       hx-swap="outerHTML">
     Click Me!</button>
     <script type="module" src="/src/main.js"></script>
-    <script src="./htmx/htmx.min.js"></script>
+    <script type="application/javascript" src="./htmx/htmx.min.js"></script>
   </body>
 </html>

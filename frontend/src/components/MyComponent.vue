@@ -17,7 +17,7 @@ async function fetchData() {
         }
         else requestData.value = await res.json();
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }; fetchData();
 

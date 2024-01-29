@@ -12,7 +12,8 @@ FROM base as build
 RUN npm run build
 
 FROM nginx as production
-COPY --from=build /app/dist/ /usr/share/nginx/html/
+COPY --from=base /frontend/htmx/htmx.min.js /htmx/htmx.min.js
+COPY --from=build /frontend/dist/ /usr/share/nginx/html/
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 COPY conf/ssl.conf /etc/nginx/ssl.conf
 EXPOSE 80
