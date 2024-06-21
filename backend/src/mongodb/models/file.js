@@ -1,13 +1,10 @@
-const mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
+const { model, Schema, } = require('mongoose');
 
 const fileSchema = new Schema({
     fieldName: String,
     originalName: String,
     contents: Buffer
 });
-
-const fileModel = mongoose.model('File', fileSchema);
+const fileModel = model('File', fileSchema);
 
 module.exports = fileModel;
